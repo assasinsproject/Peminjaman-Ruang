@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
     
     public void daftarjadwal(){
         try{
-            String query = "SELECT * FROM pinjam";
+            String query = "SELECT kd_ruang,tanggal,waktu_mulai,waktu_selesai,keterangan FROM pinjam";
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
             pst = conn.prepareStatement(query);
             

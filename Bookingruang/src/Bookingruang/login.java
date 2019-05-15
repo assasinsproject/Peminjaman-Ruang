@@ -46,7 +46,7 @@ public class login extends javax.swing.JFrame {
     }
     public void login1(){
         try {
-            String query = "SELECT * FROM `mhs` WHERE username=? and password=?";
+            String query = "SELECT * FROM `user` WHERE username=? and password=?";
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
             pst = conn.prepareStatement(query);
             pst.setString(1, uname.getText());

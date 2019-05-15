@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 15, 2019 at 12:18 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Waktu pembuatan: 15 Bulan Mei 2019 pada 12.52
+-- Versi server: 10.1.38-MariaDB
+-- Versi PHP: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen`
+-- Struktur dari tabel `dosen`
 --
 
 CREATE TABLE `dosen` (
@@ -35,7 +35,7 @@ CREATE TABLE `dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dosen`
+-- Dumping data untuk tabel `dosen`
 --
 
 INSERT INTO `dosen` (`NIP`, `nama_dosen`, `kd_prodi`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `dosen` (`NIP`, `nama_dosen`, `kd_prodi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal`
+-- Struktur dari tabel `jadwal`
 --
 
 CREATE TABLE `jadwal` (
@@ -68,7 +68,7 @@ CREATE TABLE `jadwal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jadwal`
+-- Dumping data untuk tabel `jadwal`
 --
 
 INSERT INTO `jadwal` (`kd_kelas`, `hari`, `kd_ruang`, `kd_matkul`, `NIP`, `sks`, `waktu_mulai`, `waktu_selesai`) VALUES
@@ -78,7 +78,7 @@ INSERT INTO `jadwal` (`kd_kelas`, `hari`, `kd_ruang`, `kd_matkul`, `NIP`, `sks`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `matakuliah`
+-- Struktur dari tabel `matakuliah`
 --
 
 CREATE TABLE `matakuliah` (
@@ -90,7 +90,7 @@ CREATE TABLE `matakuliah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `matakuliah`
+-- Dumping data untuk tabel `matakuliah`
 --
 
 INSERT INTO `matakuliah` (`kd_matkul`, `nama_matkul`, `thn_ajaran`, `sks`, `NIP`) VALUES
@@ -112,7 +112,7 @@ INSERT INTO `matakuliah` (`kd_matkul`, `nama_matkul`, `thn_ajaran`, `sks`, `NIP`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pinjam`
+-- Struktur dari tabel `pinjam`
 --
 
 CREATE TABLE `pinjam` (
@@ -120,29 +120,30 @@ CREATE TABLE `pinjam` (
   `tanggal` date NOT NULL,
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL,
-  `keterangan` varchar(25) NOT NULL
+  `keterangan` varchar(30) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'Belum Divalidasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pinjam`
+-- Dumping data untuk tabel `pinjam`
 --
 
-INSERT INTO `pinjam` (`kd_ruang`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `keterangan`) VALUES
-('GK101', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib'),
-('GK101', '2019-05-09', '10:00:00', '00:00:00', 'Kelas Wajib'),
-('GK102', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib'),
-('GK102', '2019-05-09', '11:00:00', '00:00:00', 'Kelas Wajib'),
-('GKAULA', '2019-05-11', '10:00:00', '00:00:00', 'Acara Seminar Informatika'),
-('GK304', '2019-05-10', '14:00:00', '00:00:00', 'Kelas Pengganti Matdis'),
-('GK101', '2019-05-09', '00:08:00', '00:00:00', 'pengganti'),
-('GKAULA', '2019-05-09', '00:15:00', '00:00:00', 'seminar'),
-('GK103', '2019-05-11', '90:00:00', '00:00:00', 'tes'),
-('GK101', '2019-05-13', '17:12:00', '17:12:00', 'kkk');
+INSERT INTO `pinjam` (`kd_ruang`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `keterangan`, `status`) VALUES
+('GK101', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
+('GK101', '2019-05-09', '10:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
+('GK102', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
+('GK102', '2019-05-09', '11:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
+('GKAULA', '2019-05-11', '10:00:00', '00:00:00', 'Acara Seminar Info', 'Belum Divalidasi'),
+('GK304', '2019-05-10', '14:00:00', '00:00:00', 'Kelas Pengganti Ma', 'Belum Divalidasi'),
+('GK101', '2019-05-09', '00:08:00', '00:00:00', 'pengganti', 'Belum Divalidasi'),
+('GKAULA', '2019-05-09', '00:15:00', '00:00:00', 'seminar', 'Belum Divalidasi'),
+('GK101', '2019-05-13', '17:12:00', '17:12:00', 'kkk', 'Belum Divalidasi'),
+('GK101', '2019-05-16', '15:43:00', '16:43:00', 'rapat', 'Belum Divalidasi');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prodi`
+-- Struktur dari tabel `prodi`
 --
 
 CREATE TABLE `prodi` (
@@ -151,7 +152,7 @@ CREATE TABLE `prodi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `prodi`
+-- Dumping data untuk tabel `prodi`
 --
 
 INSERT INTO `prodi` (`kd_prodi`, `nama_prodi`) VALUES
@@ -161,7 +162,7 @@ INSERT INTO `prodi` (`kd_prodi`, `nama_prodi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ruang`
+-- Struktur dari tabel `ruang`
 --
 
 CREATE TABLE `ruang` (
@@ -171,7 +172,7 @@ CREATE TABLE `ruang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ruang`
+-- Dumping data untuk tabel `ruang`
 --
 
 INSERT INTO `ruang` (`kd_ruang`, `jns_ruang`, `kapasitas`) VALUES
@@ -232,7 +233,7 @@ INSERT INTO `ruang` (`kd_ruang`, `jns_ruang`, `kapasitas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -245,7 +246,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`NIM`, `username`, `nama_mhs`, `kd_prodi`, `password`, `level`) VALUES
@@ -260,14 +261,14 @@ INSERT INTO `user` (`NIM`, `username`, `nama_mhs`, `kd_prodi`, `password`, `leve
 --
 
 --
--- Indexes for table `dosen`
+-- Indeks untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`NIP`),
   ADD KEY `kd_prodi` (`kd_prodi`);
 
 --
--- Indexes for table `jadwal`
+-- Indeks untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`kd_kelas`),
@@ -276,60 +277,61 @@ ALTER TABLE `jadwal`
   ADD KEY `kd_matkul` (`kd_matkul`);
 
 --
--- Indexes for table `matakuliah`
+-- Indeks untuk tabel `matakuliah`
 --
 ALTER TABLE `matakuliah`
   ADD PRIMARY KEY (`kd_matkul`),
   ADD KEY `NIP` (`NIP`);
 
 --
--- Indexes for table `pinjam`
+-- Indeks untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
   ADD KEY `kd_ruang` (`kd_ruang`);
 
 --
--- Indexes for table `prodi`
+-- Indeks untuk tabel `prodi`
 --
 ALTER TABLE `prodi`
   ADD PRIMARY KEY (`kd_prodi`);
 
 --
--- Indexes for table `ruang`
+-- Indeks untuk tabel `ruang`
 --
 ALTER TABLE `ruang`
   ADD PRIMARY KEY (`kd_ruang`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`NIM`);
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `dosen`
+-- Ketidakleluasaan untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
   ADD CONSTRAINT `dosen_ibfk_1` FOREIGN KEY (`kd_prodi`) REFERENCES `prodi` (`kd_prodi`);
 
 --
--- Constraints for table `jadwal`
+-- Ketidakleluasaan untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`kd_matkul`) REFERENCES `matakuliah` (`kd_matkul`);
+  ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`kd_matkul`) REFERENCES `matakuliah` (`kd_matkul`),
+  ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`kd_ruang`) REFERENCES `ruang` (`kd_ruang`);
 
 --
--- Constraints for table `matakuliah`
+-- Ketidakleluasaan untuk tabel `matakuliah`
 --
 ALTER TABLE `matakuliah`
   ADD CONSTRAINT `matakuliah_ibfk_1` FOREIGN KEY (`NIP`) REFERENCES `dosen` (`NIP`);
 
 --
--- Constraints for table `pinjam`
+-- Ketidakleluasaan untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
   ADD CONSTRAINT `pinjam_ibfk_1` FOREIGN KEY (`kd_ruang`) REFERENCES `ruang` (`kd_ruang`);
