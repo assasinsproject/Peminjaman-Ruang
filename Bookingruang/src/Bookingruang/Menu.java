@@ -107,6 +107,7 @@ public class Menu extends javax.swing.JFrame {
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

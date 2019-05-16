@@ -42,7 +42,6 @@ public class pinjam extends javax.swing.JFrame {
     public pinjam() {
         initComponents();
         combo();
-        zonahari();
     }
     
     public void kembali (){
@@ -92,19 +91,13 @@ public class pinjam extends javax.swing.JFrame {
     }
     
     public void hari(){
-        
         try{
-            
             String query= "UPDATE pinjam SET hari = dayname(tanggal) WHERE tanggal ='"+tgl+"'";
                 conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
                 pst = conn.prepareStatement(query);
                 
                 pst.executeUpdate(query);
-                
-                JOptionPane.showMessageDialog(this,"Dapat hari!");
-     
         }catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,"Gagal!");
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -160,6 +153,7 @@ public class pinjam extends javax.swing.JFrame {
         nimpinjam = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Peminjaman Ruang Gedung Kuliah Umum");

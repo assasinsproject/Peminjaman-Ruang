@@ -114,6 +114,7 @@ public class adminvalidasi extends javax.swing.JFrame {
         perkuliahan = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(812, 529));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

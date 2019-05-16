@@ -85,7 +85,7 @@
           <Color blue="cc" green="cc" red="cc" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/pict/images/768px-High-contrast-dialog-close.svg.png"/>
+          <Image iconType="3" name="/pict/images/exit2.png"/>
         </Property>
       </Properties>
       <Events>
@@ -93,7 +93,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="30" height="30"/>
+          <AbsoluteConstraints x="10" y="10" width="30" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

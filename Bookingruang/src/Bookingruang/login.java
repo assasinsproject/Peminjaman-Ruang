@@ -117,14 +117,14 @@ public class login extends javax.swing.JFrame {
         jButton1.setBounds(110, 330, 140, 50);
 
         jLabel3.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/768px-High-contrast-dialog-close.svg.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/exit2.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel3MouseClicked(evt);
             }
         });
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(0, 0, 30, 30);
+        jLabel3.setBounds(10, 10, 30, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/login master fix.png"))); // NOI18N
         getContentPane().add(jLabel1);

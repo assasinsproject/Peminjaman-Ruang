@@ -111,6 +111,7 @@ public class batal extends javax.swing.JFrame {
         pinjam = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jButton1.setText("Kembali");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
