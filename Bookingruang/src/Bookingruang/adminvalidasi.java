@@ -107,8 +107,9 @@ public class adminvalidasi extends javax.swing.JFrame {
         tabelkosong = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        validasi = new javax.swing.JComboBox<>();
+        validasi = new javax.swing.JComboBox<String>();
         update = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         perkuliahan = new javax.swing.JMenu();
         logout = new javax.swing.JMenu();
@@ -159,7 +160,7 @@ public class adminvalidasi extends javax.swing.JFrame {
         jLabel2.setText("Ruang Terpakai");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        validasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
+        validasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
         validasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 validasiActionPerformed(evt);
@@ -180,6 +181,10 @@ public class adminvalidasi extends javax.swing.JFrame {
             }
         });
         getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, 30));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
+        jLabel3.setPreferredSize(new java.awt.Dimension(812, 529));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 810, 540));
 
         jMenuBar2.setPreferredSize(new java.awt.Dimension(184, 26));
 
@@ -322,6 +327,7 @@ public class adminvalidasi extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
