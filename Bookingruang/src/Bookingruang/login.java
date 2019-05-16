@@ -116,6 +116,7 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(110, 330, 140, 50);
 
+        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/768px-High-contrast-dialog-close.svg.png"))); // NOI18N
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

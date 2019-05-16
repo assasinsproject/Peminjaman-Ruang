@@ -140,9 +140,12 @@ public class Menu extends javax.swing.JFrame {
 
         judul1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         judul1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        judul1.setText("Daftar Peminjaman");
+        judul1.setText("Daftar Peminjaman Ruang");
 
-        menu.setText("Menu");
+        menu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.gray, java.awt.Color.gray, java.awt.Color.gray));
+        menu.setText("Menu Program");
+        menu.setToolTipText("");
+        menu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenuItem1.setText("Peminjaman Ruang");
         jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -167,6 +170,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar2.add(menu);
 
+        logout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, java.awt.Color.gray));
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

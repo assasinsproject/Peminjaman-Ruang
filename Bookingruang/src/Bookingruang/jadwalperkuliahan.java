@@ -5,19 +5,59 @@
  */
 package Bookingruang;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Viranda
  */
 public class jadwalperkuliahan extends javax.swing.JFrame {
-
+    public Connection conn = null;
+    public Statement st = null;
+    public ResultSet rst = null;
+    public DefaultTableModel model;
+    public PreparedStatement pst;
+    public static int statusSearching = 0;
     /**
      * Creates new form jadwalperkuliahan
      */
+    
     public jadwalperkuliahan() {
         initComponents();
+        String[] header = {"Hari","Ruangan","Mata Kuliah","NIP","SKS","Waktu Selesai","Waktu Selesai"};
+        model = new DefaultTableModel(header,0);
+        tabeljadwal.setModel(model);
+        daftarjadwal();
     }
-
+    
+    public void daftarjadwal(){
+        try{
+            String query = "SELECT hari,kd_ruang,kd_matkul,nip,sks,waktu_mulai,waktu_selesai FROM jadwal";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+            pst = conn.prepareStatement(query);
+            
+            rst = pst.executeQuery();
+            int i = 1;
+            while (rst.next()){
+                String[] row = {rst.getString(1),rst.getString(2),rst.getString(3),
+                                rst.getString(4),rst.getString(5),rst.getString(6),rst.getString(7)};
+                model.addRow(row); 
+                i++;
+            }
+            tabeljadwal.setModel(model);    
+        }catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +67,128 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabeljadwal = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        kembali = new javax.swing.JButton();
+        isicari = new javax.swing.JTextField();
+        cari = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tabeljadwal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabeljadwal);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("Jadwal Umum Perkuliahan GKU");
+
+        kembali.setText("Kembali");
+        kembali.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                kembaliMouseClicked(evt);
+            }
+        });
+
+        cari.setText("Cari");
+        cari.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cariMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kembali)
+                .addGap(250, 250, 250)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(isicari, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cari))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 718, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(kembali)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(isicari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cari))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void kembaliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kembaliMouseClicked
+        adminvalidasi adm = new adminvalidasi();
+                adm.setVisible(true);
+                this.dispose();
+    }//GEN-LAST:event_kembaliMouseClicked
+
+    private void cariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cariMouseClicked
+        statusSearching=1;
+            if(isicari.getText().isEmpty()){ 
+                statusSearching = 0;
+            }else if(statusSearching==1){
+                String[] header = {"Hari","Ruangan","Mata Kuliah","NIP","SKS","Waktu Selesai","Waktu Selesai"};
+                model = new DefaultTableModel(header,0);
+                tabeljadwal.setModel(model);
+                
+                String search = isicari.getText();
+                try{
+                    String query = "SELECT hari,kd_ruang,kd_matkul,nip,sks,waktu_mulai,waktu_selesai FROM "
+                                + "jadwal WHERE hari LIKE '"+search+"'"+ "OR kd_ruang LIKE '"+search+"' "
+                                + "OR kd_matkul LIKE '"+search+"'"
+                                + "OR nip LIKE '"+search+"' OR sks LIKE '"+search+"'"
+                                + "OR waktu_mulai LIKE '"+search+"' OR waktu_selesai LIKE '"+search+"' "
+                                + "ORDER BY hari";
+                    conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+                    pst = conn.prepareStatement(query);
+                    
+                    rst = pst.executeQuery(query);
+                    
+                    while(rst.next()){
+                        String [] row = {rst.getString(1),rst.getString(2),rst.getString(3),
+                                        rst.getString(4),rst.getString(5),rst.getString(6),rst.getString(7)};
+                        model.addRow(row);
+                    }
+                    tabeljadwal.setModel(model);
+                }catch(SQLException ex){
+                    JOptionPane.showMessageDialog(rootPane, "Data yang dicari tidak ada !!!!");
+                    Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+    }//GEN-LAST:event_cariMouseClicked
 
     /**
      * @param args the command line arguments
@@ -54,7 +201,7 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -72,6 +219,7 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new jadwalperkuliahan().setVisible(true);
             }
@@ -79,5 +227,15 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cari;
+    private javax.swing.JTextField isicari;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton kembali;
+    private javax.swing.JTable tabeljadwal;
     // End of variables declaration//GEN-END:variables
+
+    private ResultSet executeQuery(String query) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

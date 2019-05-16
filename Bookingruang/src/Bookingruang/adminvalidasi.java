@@ -33,7 +33,7 @@ public class adminvalidasi extends javax.swing.JFrame {
      */
     public adminvalidasi() {
         initComponents();
-        String[] header = {"Kode Peminjaman","Kode Ruang","Tanggal","Waktu Mulai","Waktu Selesai","Keterangan","Peminjam","Status"};
+        String[] header = {"Kode Peminjaman","Kode Ruang","Hari","Tanggal","Waktu Mulai","Waktu Selesai","Keterangan","NIM","Status"};
         model = new DefaultTableModel(header,0);
         tabelpakai.setModel(model);
         ruangpakai();
@@ -48,18 +48,21 @@ public class adminvalidasi extends javax.swing.JFrame {
         try{
             model.getDataVector().removeAllElements();
             model.fireTableDataChanged();
-            String query = "SELECT * FROM pinjam";
+            String query = "SELECT kd_pinjam,kd_ruang,hari,tanggal,waktu_mulai,waktu_selesai,keterangan,nim,status FROM pinjam";
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
             pst = conn.prepareStatement(query);
             
             rst = pst.executeQuery();
-            //int i = 1;
+            
             while (rst.next()){
                 String[] row = {rst.getString(1),rst.getString(2),rst.getString(3),
-                                rst.getString(4),rst.getString(5),rst.getString(6),rst.getString(7),rst.getString(8)};
+                                rst.getString(4),rst.getString(5),rst.getString(6),
+                                rst.getString(7),rst.getString(8),rst.getString(9)};
                 model.addRow(row); 
-                //i++;
+            
             }
+            
+            
             tabelpakai.setModel(model);    
         }catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
@@ -86,7 +89,7 @@ public class adminvalidasi extends javax.swing.JFrame {
     }
     public void klik (adminvalidasi av){
         int pilih = av.tabelpakai.getSelectedRow();
-        av.validasi.setSelectedItem(av.tabelpakai.getValueAt(pilih, 6).toString());
+        av.validasi.setSelectedItem(av.tabelpakai.getValueAt(pilih, 9).toString());
     }
 
     /**
@@ -108,6 +111,7 @@ public class adminvalidasi extends javax.swing.JFrame {
         update = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         logout = new javax.swing.JMenu();
+        perkuliahan = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(812, 529));
@@ -183,6 +187,19 @@ public class adminvalidasi extends javax.swing.JFrame {
         });
         jMenuBar2.add(logout);
 
+        perkuliahan.setText("Jadwal Perkuliahan GKU");
+        perkuliahan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                perkuliahanMouseClicked(evt);
+            }
+        });
+        perkuliahan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perkuliahanActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(perkuliahan);
+
         setJMenuBar(jMenuBar2);
 
         pack();
@@ -217,8 +234,8 @@ public class adminvalidasi extends javax.swing.JFrame {
     private void updateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateMouseClicked
         // TODO add your handling code here:
         try{
-            String query = "UPDATE pinjam set kd_ruang=?,"+"tanggal=?,"+"waktu_mulai=?,"
-                            +"waktu_selesai=?,"+"keterangan=?,"+"peminjam=?,"+"status=?"+"where kd_pinjam=?" ;
+            String query = "UPDATE pinjam set kd_ruang=?,"+"hari=?,"+"tanggal=?,"+"waktu_mulai=?,"
+                            +"waktu_selesai=?,"+"keterangan=?,"+"nim=?,"+"status=?"+"where kd_pinjam=?" ;
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
             pst = conn.prepareStatement(query);
             
@@ -229,8 +246,9 @@ public class adminvalidasi extends javax.swing.JFrame {
             pst.setString(4, tabelpakai.getValueAt(pilih, 4).toString());
             pst.setString(5, tabelpakai.getValueAt(pilih, 5).toString());
             pst.setString(6, tabelpakai.getValueAt(pilih, 6).toString());
-            pst.setString(7, validasi.getSelectedItem().toString());
-            pst.setString(8, tabelpakai.getValueAt(pilih, 0).toString());   
+            pst.setString(7, tabelpakai.getValueAt(pilih, 7).toString());
+            pst.setString(8, validasi.getSelectedItem().toString());
+            pst.setString(9, tabelpakai.getValueAt(pilih, 0).toString());   
             pst.executeUpdate();
             
             ruangpakai();
@@ -239,6 +257,17 @@ public class adminvalidasi extends javax.swing.JFrame {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_updateMouseClicked
+
+    private void perkuliahanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perkuliahanMouseClicked
+        // TODO add your handling code here:
+        jadwalperkuliahan jp = new jadwalperkuliahan();
+        jp.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_perkuliahanMouseClicked
+
+    private void perkuliahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perkuliahanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_perkuliahanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,6 +311,7 @@ public class adminvalidasi extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu logout;
+    private javax.swing.JMenu perkuliahan;
     private javax.swing.JTable tabelkosong;
     private javax.swing.JTable tabelpakai;
     private javax.swing.JButton update;

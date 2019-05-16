@@ -63,7 +63,7 @@ public class batal extends javax.swing.JFrame {
     public void pembatalan(){
         try{
            
-            String query = "DELETE FROM `pinjam` where peminjam='"+peminjam.getText()+"'and waktu_mulai='"+waktu+"'and waktu_selesai='"+waktu1+"'";
+            String query = "DELETE FROM `pinjam` where nim='"+nimpinjam.getText()+"'and waktu_mulai='"+waktu+"'and waktu_selesai='"+waktu1+"'";
                 conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
                 pst = conn.prepareStatement(query);
                
@@ -107,7 +107,7 @@ public class batal extends javax.swing.JFrame {
         new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         Jamspin1 = new javax.swing.JSpinner(ms);
         jLabel6 = new javax.swing.JLabel();
-        peminjam = new javax.swing.JTextField();
+        nimpinjam = new javax.swing.JTextField();
         pinjam = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -163,7 +163,7 @@ public class batal extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Peminjam");
+        jLabel6.setText("NIM");
 
         pinjam.setText("Pembatalan");
         pinjam.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -209,7 +209,7 @@ public class batal extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Jamspin1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Jamspin, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(peminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(nimpinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(200, 200, 200))))
         );
         layout.setVerticalGroup(
@@ -238,7 +238,7 @@ public class batal extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(peminjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nimpinjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(pinjam)
                 .addContainerGap(133, Short.MAX_VALUE))
@@ -334,7 +334,7 @@ public class batal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField peminjam;
+    private javax.swing.JTextField nimpinjam;
     private javax.swing.JButton pinjam;
     private javax.swing.JComboBox<String> ruang;
     private com.toedter.calendar.JDateChooser tanggal;

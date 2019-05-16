@@ -42,6 +42,7 @@ public class pinjam extends javax.swing.JFrame {
     public pinjam() {
         initComponents();
         combo();
+        zonahari();
     }
     
     public void kembali (){
@@ -70,9 +71,8 @@ public class pinjam extends javax.swing.JFrame {
     
     public void peminjaman(){
         try{
-           
-            String query = "INSERT INTO pinjam (kd_ruang,tanggal,waktu_mulai,waktu_selesai,peminjam,keterangan) VALUES "
-                            + "('"+ruang.getSelectedItem()+"','"+tgl+"','"+waktu+"','"+waktu1+"','"+peminjam.getText()
+            String query = "INSERT INTO pinjam (kd_ruang,tanggal,waktu_mulai,waktu_selesai,nim,keterangan) VALUES "
+                            + "('"+ruang.getSelectedItem()+"','"+tgl+"','"+waktu+"','"+waktu1+"','"+nimpinjam.getText()
                             +"','"+keterangan.getText()+"')";
                 conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
                 pst = conn.prepareStatement(query);
@@ -86,6 +86,43 @@ public class pinjam extends javax.swing.JFrame {
      
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,"Ruang terpakai!");
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    public void hari(){
+        
+        try{
+            
+            String query= "UPDATE pinjam SET hari = dayname(tanggal) WHERE tanggal ='"+tgl+"'";
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+                pst = conn.prepareStatement(query);
+                
+                pst.executeUpdate(query);
+                
+                JOptionPane.showMessageDialog(this,"Dapat hari!");
+     
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,"Gagal!");
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    public void zonahari(){
+        try{
+            String query= "SET @@lc_time_names='id_ID'";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+            pst = conn.prepareStatement(query);
+                
+            pst.executeUpdate(query);
+                
+            JOptionPane.showMessageDialog(this,"indo");
+            
+     
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,"Gagal!");
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -120,7 +157,7 @@ public class pinjam extends javax.swing.JFrame {
         new SpinnerDateModel(date, null, null, Calendar.HOUR_OF_DAY);
         Jamspin1 = new javax.swing.JSpinner(ms);
         jLabel6 = new javax.swing.JLabel();
-        peminjam = new javax.swing.JTextField();
+        nimpinjam = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,7 +215,7 @@ public class pinjam extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Peminjam");
+        jLabel6.setText("NIM");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,14 +243,13 @@ public class pinjam extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(ruang, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                                        .addComponent(keterangan)
-                                        .addComponent(Jamspin, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Jamspin1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(peminjam, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ruang, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                    .addComponent(keterangan)
+                                    .addComponent(Jamspin, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Jamspin1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nimpinjam))
                                 .addGap(10, 10, 10)))))
                 .addContainerGap(196, Short.MAX_VALUE))
         );
@@ -240,13 +276,13 @@ public class pinjam extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jamspin1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(26, 26, 26)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(keterangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(30, 30, 30)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(peminjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nimpinjam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addComponent(pinjam)
@@ -258,8 +294,8 @@ public class pinjam extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pinjamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pinjamMouseClicked
-        // TODO add your handling code here:
         peminjaman();
+        hari();
     }//GEN-LAST:event_pinjamMouseClicked
 
     private void tanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tanggalPropertyChange
@@ -304,7 +340,7 @@ public class pinjam extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -341,7 +377,7 @@ public class pinjam extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField keterangan;
-    private javax.swing.JTextField peminjam;
+    private javax.swing.JTextField nimpinjam;
     private javax.swing.JButton pinjam;
     private javax.swing.JComboBox<String> ruang;
     private com.toedter.calendar.JDateChooser tanggal;
