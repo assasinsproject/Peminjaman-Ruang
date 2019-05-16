@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Bulan Mei 2019 pada 15.20
+-- Waktu pembuatan: 16 Bulan Mei 2019 pada 07.19
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -122,6 +122,7 @@ CREATE TABLE `pinjam` (
   `waktu_mulai` time NOT NULL,
   `waktu_selesai` time NOT NULL,
   `keterangan` varchar(30) NOT NULL,
+  `peminjam` varchar(21) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'Belum Divalidasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -129,17 +130,20 @@ CREATE TABLE `pinjam` (
 -- Dumping data untuk tabel `pinjam`
 --
 
-INSERT INTO `pinjam` (`kd_pinjam`, `kd_ruang`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `keterangan`, `status`) VALUES
-(1, 'GK101', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
-(2, 'GK101', '2019-05-09', '10:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
-(3, 'GK102', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
-(4, 'GK102', '2019-05-09', '11:00:00', '00:00:00', 'Kelas Wajib', 'Belum Divalidasi'),
-(5, 'GKAULA', '2019-05-11', '10:00:00', '00:00:00', 'Acara Seminar Info', 'Belum Divalidasi'),
-(6, 'GK304', '2019-05-10', '14:00:00', '00:00:00', 'Kelas Pengganti Ma', 'Belum Divalidasi'),
-(7, 'GK101', '2019-05-09', '00:08:00', '00:00:00', 'pengganti', 'Belum Divalidasi'),
-(8, 'GKAULA', '2019-05-09', '00:15:00', '00:00:00', 'seminar', 'Belum Divalidasi'),
-(9, 'GK101', '2019-05-13', '17:12:00', '17:12:00', 'kkk', 'Belum Divalidasi'),
-(10, 'GK101', '2019-05-16', '15:43:00', '16:43:00', 'rapat', 'Belum Divalidasi');
+INSERT INTO `pinjam` (`kd_pinjam`, `kd_ruang`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `keterangan`, `peminjam`, `status`) VALUES
+(1, 'GK101', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib', '', 'Sudah Divalidasi'),
+(2, 'GK101', '2019-05-09', '10:00:00', '00:00:00', 'Kelas Wajib', '', 'Belum Divalidasi'),
+(3, 'GK102', '2019-05-09', '08:00:00', '00:00:00', 'Kelas Wajib', '', 'Belum Divalidasi'),
+(4, 'GK102', '2019-05-09', '11:00:00', '00:00:00', 'Kelas Wajib', '', 'Belum Divalidasi'),
+(5, 'GKAULA', '2019-05-11', '10:00:00', '00:00:00', 'Acara Seminar Info', '', 'Belum Divalidasi'),
+(6, 'GK304', '2019-05-10', '14:00:00', '00:00:00', 'Kelas Pengganti Ma', '', 'Belum Divalidasi'),
+(7, 'GK101', '2019-05-09', '00:08:00', '00:00:00', 'pengganti', '', 'Belum Divalidasi'),
+(8, 'GKAULA', '2019-05-09', '00:15:00', '00:00:00', 'seminar', '', 'Belum Divalidasi'),
+(9, 'GK101', '2019-05-13', '17:12:00', '17:12:00', 'kkk', '', 'Belum Divalidasi'),
+(10, 'GK101', '2019-05-16', '15:43:00', '16:43:00', 'rapat', '', 'Belum Divalidasi'),
+(11, 'GK107', '2019-05-16', '08:11:00', '09:11:00', '', '', 'Sudah Divalidasi'),
+(16, 'GK101', '2019-05-17', '12:22:00', '13:22:00', '', 'agoy', 'Belum Divalidasi'),
+(18, 'GK103', '2019-05-17', '08:00:00', '17:00:00', 'pengganti studio', 'fathan', 'Belum Divalidasi');
 
 -- --------------------------------------------------------
 
@@ -317,7 +321,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `kd_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `kd_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

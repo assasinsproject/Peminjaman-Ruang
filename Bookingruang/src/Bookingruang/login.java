@@ -51,13 +51,21 @@ public class login extends javax.swing.JFrame {
             pst = conn.prepareStatement(query);
             pst.setString(1, uname.getText());
             pst.setString(2, pw.getText());
-            
+           
             rst = pst.executeQuery();
-            if(rst.next()){
-                JOptionPane.showMessageDialog(this,"Berhasil login");
-                Menu mn = new Menu();
-                mn.setVisible(true);
-                this.dispose();
+            
+            if(rst.next()){    
+                if(rst.getString("level").equals("2")){
+                    JOptionPane.showMessageDialog(this,"Berhasil login sebagai admin");
+                    adminvalidasi av = new adminvalidasi();
+                    av.setVisible(true);
+                    this.dispose();
+                }else{
+                    JOptionPane.showMessageDialog(this,"Berhasil login sebagai user");
+                    Menu mn = new Menu();
+                    mn.setVisible(true);
+                    this.dispose();
+                }
             }else{
                 JOptionPane.showMessageDialog(this,"Username atau password salah!");
             }
@@ -88,11 +96,6 @@ public class login extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         uname.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        uname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                unameActionPerformed(evt);
-            }
-        });
         getContentPane().add(uname);
         uname.setBounds(80, 184, 230, 40);
 
@@ -108,11 +111,6 @@ public class login extends javax.swing.JFrame {
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
@@ -137,18 +135,10 @@ public class login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         login1();
     }//GEN-LAST:event_jButton1MouseClicked
-
-    private void unameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_unameActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:

@@ -28,6 +28,7 @@ public class Menu extends javax.swing.JFrame {
     public Statement st = null;
     public ResultSet rst = null;
     public DefaultTableModel model;
+    public DefaultTableModel model1;
     public PreparedStatement pst;
     
     /**
@@ -35,27 +36,51 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        String[] header = {"Kode Ruang","Tanggal","Waktu Mulai","Waktu Selesai","Keterangan"};
+        String[] header = {"Ruang","Jenis Ruangan","Kapasitas"};
         model = new DefaultTableModel(header,0);
         tabel.setModel(model);
-        daftarjadwal();
+        daftarkosong();
+        
+        String[] header1 = {"Ruang","Tanggal","Waktu Mulai","Waktu Selesai","Keterangan","Status"};
+        model1 = new DefaultTableModel(header1,0);
+        tabel1.setModel(model1);
+        daftarpinjam();
     }
     
-    public void daftarjadwal(){
+    public void daftarkosong(){
         try{
-            String query = "SELECT kd_ruang,tanggal,waktu_mulai,waktu_selesai,keterangan FROM pinjam";
+            String query = "SELECT * FROM ruang where kd_ruang not in (SELECT kd_ruang from pinjam)";
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
             pst = conn.prepareStatement(query);
             
             rst = pst.executeQuery();
             int i = 1;
             while (rst.next()){
-                String[] row = {rst.getString(1),rst.getString(2),rst.getString(3),
-                                rst.getString(4),rst.getString(5)};
+                String[] row = {rst.getString(1),rst.getString(2),rst.getString(3)};
                 model.addRow(row); 
                 i++;
             }
             tabel.setModel(model);    
+        }catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void daftarpinjam(){
+        try{
+            String query = "SELECT kd_ruang,tanggal,waktu_mulai,waktu_selesai,keterangan,status FROM pinjam";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+            pst = conn.prepareStatement(query);
+            
+            rst = pst.executeQuery();
+            int i = 1;
+            while (rst.next()){
+                String[] row = {rst.getString(1),rst.getString(2),rst.getString(3),rst.getString(4),
+                                rst.getString(5),rst.getString(6)};
+                model1.addRow(row); 
+                i++;
+            }
+            tabel1.setModel(model1);    
         }catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,6 +97,9 @@ public class Menu extends javax.swing.JFrame {
         jadwal = new javax.swing.JScrollPane();
         tabel = new javax.swing.JTable();
         judul = new javax.swing.JLabel();
+        jadwal1 = new javax.swing.JScrollPane();
+        tabel1 = new javax.swing.JTable();
+        judul1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -93,8 +121,26 @@ public class Menu extends javax.swing.JFrame {
         ));
         jadwal.setViewportView(tabel);
 
+        judul.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         judul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        judul.setText("Jadwal Perkuliahan Gedung Kuliah Umum");
+        judul.setText("Daftar Ruang Kosong Pada Gedung Kuliah Umum");
+
+        tabel1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jadwal1.setViewportView(tabel1);
+
+        judul1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        judul1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        judul1.setText("Daftar Peminjaman");
 
         menu.setText("Menu");
 
@@ -112,6 +158,11 @@ public class Menu extends javax.swing.JFrame {
         menu.add(jMenuItem1);
 
         jMenuItem2.setText("Pembatalan Peminjaman");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menu.add(jMenuItem2);
 
         jMenuBar2.add(menu);
@@ -135,13 +186,13 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jadwal)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
-                .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(judul1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jadwal1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,8 +201,12 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(judul1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jadwal1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
 
         pack();
@@ -184,6 +239,13 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jMenuItem1MouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        batal bt = new batal();
+        bt.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,9 +288,12 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jadwal;
+    private javax.swing.JScrollPane jadwal1;
     private javax.swing.JLabel judul;
+    private javax.swing.JLabel judul1;
     private javax.swing.JMenu logout;
     private javax.swing.JMenu menu;
     private javax.swing.JTable tabel;
+    private javax.swing.JTable tabel1;
     // End of variables declaration//GEN-END:variables
 }

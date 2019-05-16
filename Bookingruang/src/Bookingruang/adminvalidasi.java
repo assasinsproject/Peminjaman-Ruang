@@ -25,6 +25,7 @@ public class adminvalidasi extends javax.swing.JFrame {
     public Statement st = null;
     public ResultSet rst = null;
     public DefaultTableModel model;
+    public DefaultTableModel model1;
     public PreparedStatement pst;
 
     /**
@@ -32,10 +33,15 @@ public class adminvalidasi extends javax.swing.JFrame {
      */
     public adminvalidasi() {
         initComponents();
-        String[] header = {"Kode Peminjaman","Kode Ruang","Tanggal","Waktu Mulai","Waktu Selesai","Keterangan","Status"};
+        String[] header = {"Kode Peminjaman","Kode Ruang","Tanggal","Waktu Mulai","Waktu Selesai","Keterangan","Peminjam","Status"};
         model = new DefaultTableModel(header,0);
         tabelpakai.setModel(model);
         ruangpakai();
+        
+        String[] header1 = {"Ruang","Jenis Ruangan","Kapasitas"};
+        model1 = new DefaultTableModel(header1,0);
+        tabelkosong.setModel(model1);
+        daftarkosong();
     }
     
     public void ruangpakai(){
@@ -50,7 +56,7 @@ public class adminvalidasi extends javax.swing.JFrame {
             //int i = 1;
             while (rst.next()){
                 String[] row = {rst.getString(1),rst.getString(2),rst.getString(3),
-                                rst.getString(4),rst.getString(5),rst.getString(6),rst.getString(7)};
+                                rst.getString(4),rst.getString(5),rst.getString(6),rst.getString(7),rst.getString(8)};
                 model.addRow(row); 
                 //i++;
             }
@@ -60,6 +66,24 @@ public class adminvalidasi extends javax.swing.JFrame {
         }
     }
     
+    public void daftarkosong(){
+        try{
+            String query = "SELECT * FROM ruang where kd_ruang not in (SELECT kd_ruang from pinjam)";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+            pst = conn.prepareStatement(query);
+            
+            rst = pst.executeQuery();
+            int i = 1;
+            while (rst.next()){
+                String[] row = {rst.getString(1),rst.getString(2),rst.getString(3)};
+                model1.addRow(row); 
+                i++;
+            }
+            tabelkosong.setModel(model1);    
+        }catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void klik (adminvalidasi av){
         int pilih = av.tabelpakai.getSelectedRow();
         av.validasi.setSelectedItem(av.tabelpakai.getValueAt(pilih, 6).toString());
@@ -86,6 +110,7 @@ public class adminvalidasi extends javax.swing.JFrame {
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(812, 529));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelpakai.setModel(new javax.swing.table.DefaultTableModel(
@@ -106,7 +131,7 @@ public class adminvalidasi extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tabelpakai);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 820, 150));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 790, 90));
 
         tabelkosong.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,13 +146,13 @@ public class adminvalidasi extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabelkosong);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 820, 170));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 350, 90));
 
-        jLabel1.setText("Menampilkan Ruang Kosong");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        jLabel1.setText("Ruang Kosong");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
 
-        jLabel2.setText("Menampilkan Ruang Terpakai");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+        jLabel2.setText("Ruang Terpakai");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         validasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
         validasi.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +160,7 @@ public class adminvalidasi extends javax.swing.JFrame {
                 validasiActionPerformed(evt);
             }
         });
-        getContentPane().add(validasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 130, -1));
+        getContentPane().add(validasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 130, -1));
 
         update.setText("Update");
         update.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -143,7 +168,7 @@ public class adminvalidasi extends javax.swing.JFrame {
                 updateMouseClicked(evt);
             }
         });
-        getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+        getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
 
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,7 +218,7 @@ public class adminvalidasi extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             String query = "UPDATE pinjam set kd_ruang=?,"+"tanggal=?,"+"waktu_mulai=?,"
-                            +"waktu_selesai=?,"+"keterangan=?,"+"status=?"+"where kd_pinjam=?" ;
+                            +"waktu_selesai=?,"+"keterangan=?,"+"peminjam=?,"+"status=?"+"where kd_pinjam=?" ;
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
             pst = conn.prepareStatement(query);
             
@@ -203,9 +228,9 @@ public class adminvalidasi extends javax.swing.JFrame {
             pst.setString(3, tabelpakai.getValueAt(pilih, 3).toString());
             pst.setString(4, tabelpakai.getValueAt(pilih, 4).toString());
             pst.setString(5, tabelpakai.getValueAt(pilih, 5).toString());
-         
-            pst.setString(6, validasi.getSelectedItem().toString());
-            pst.setString(7, tabelpakai.getValueAt(pilih, 0).toString());   
+            pst.setString(6, tabelpakai.getValueAt(pilih, 6).toString());
+            pst.setString(7, validasi.getSelectedItem().toString());
+            pst.setString(8, tabelpakai.getValueAt(pilih, 0).toString());   
             pst.executeUpdate();
             
             ruangpakai();
