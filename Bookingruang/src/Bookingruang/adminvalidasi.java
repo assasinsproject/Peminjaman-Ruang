@@ -107,13 +107,14 @@ public class adminvalidasi extends javax.swing.JFrame {
         tabelkosong = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        validasi = new javax.swing.JComboBox<String>();
+        validasi = new javax.swing.JComboBox<>();
         update = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         perkuliahan = new javax.swing.JMenu();
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(812, 529));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -158,7 +159,7 @@ public class adminvalidasi extends javax.swing.JFrame {
         jLabel2.setText("Ruang Terpakai");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        validasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
+        validasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
         validasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 validasiActionPerformed(evt);

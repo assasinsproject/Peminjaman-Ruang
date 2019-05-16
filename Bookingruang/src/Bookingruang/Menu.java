@@ -100,6 +100,7 @@ public class Menu extends javax.swing.JFrame {
         jadwal1 = new javax.swing.JScrollPane();
         tabel1 = new javax.swing.JTable();
         judul1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         menu = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -149,6 +150,10 @@ public class Menu extends javax.swing.JFrame {
         judul1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         judul1.setText("Daftar Peminjaman Ruang");
         getContentPane().add(judul1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 204, 690, 34));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(820, 529));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, -1, -1));
 
         jMenuBar2.setPreferredSize(new java.awt.Dimension(146, 26));
 
@@ -273,6 +278,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
