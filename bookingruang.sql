@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Bulan Mei 2019 pada 07.19
+-- Waktu pembuatan: 16 Bulan Mei 2019 pada 09.53
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -44,11 +44,16 @@ INSERT INTO `dosen` (`NIP`, `nama_dosen`, `kd_prodi`) VALUES
 (1003, 'Fatan', 'IF'),
 (1004, 'Leo', 'IF'),
 (1005, 'Yoga', 'IF'),
+(1006, 'Budi', 'IF'),
+(1007, 'Dea', 'IF'),
 (2001, 'Luki', 'EL'),
 (2002, 'Renhard', 'EL'),
 (2003, 'Anugrah', 'EL'),
 (2004, 'Wayan', 'EL'),
-(2005, 'Andre', 'EL');
+(2005, 'Andre', 'EL'),
+(2006, 'Fauzan', 'EL'),
+(2007, 'Fikar', 'EL'),
+(2008, 'Alwi', 'EL');
 
 -- --------------------------------------------------------
 
@@ -57,23 +62,37 @@ INSERT INTO `dosen` (`NIP`, `nama_dosen`, `kd_prodi`) VALUES
 --
 
 CREATE TABLE `jadwal` (
-  `kd_kelas` varchar(11) NOT NULL,
+  `kd_jadwal` int(11) NOT NULL,
   `hari` varchar(20) NOT NULL,
   `kd_ruang` varchar(20) NOT NULL,
   `kd_matkul` varchar(20) NOT NULL,
   `NIP` int(20) NOT NULL,
   `sks` int(2) NOT NULL,
-  `waktu_mulai` time(6) NOT NULL,
-  `waktu_selesai` time(6) NOT NULL
+  `waktu_mulai` time NOT NULL,
+  `waktu_selesai` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `jadwal`
 --
 
-INSERT INTO `jadwal` (`kd_kelas`, `hari`, `kd_ruang`, `kd_matkul`, `NIP`, `sks`, `waktu_mulai`, `waktu_selesai`) VALUES
-('1111', 'senin', 'GK101', 'IF2211', 1001, 3, '08:00:00.000000', '10:40:00.000000'),
-('1112', 'senin', 'GK101', 'IF2211', 1002, 3, '08:00:00.000000', '10:40:00.000000');
+INSERT INTO `jadwal` (`kd_jadwal`, `hari`, `kd_ruang`, `kd_matkul`, `NIP`, `sks`, `waktu_mulai`, `waktu_selesai`) VALUES
+(1115, 'SENIN', 'GK103', 'IF2211/RA', 1006, 3, '08:00:00', '10:30:00'),
+(1116, 'SENIN', 'GK104', 'IF2211/RB', 1007, 3, '08:00:00', '10:30:00'),
+(1117, 'SENIN', 'GK103', 'IF2211/RD', 1006, 3, '13:00:00', '15:30:00'),
+(1118, 'SENIN', 'GK104', 'IF2211/RC', 1007, 3, '13:00:00', '15:30:00'),
+(1120, 'SENIN', 'GK105', 'IF2241/RA', 1001, 2, '08:00:00', '09:40:00'),
+(1121, 'SENIN', 'GK106', 'IF2241/RB', 1002, 2, '08:00:00', '09:40:00'),
+(1122, 'SENIN', 'GK105', 'IF2241/RC', 1002, 2, '13:00:00', '14:40:00'),
+(1123, 'SENIN', 'GK106', 'IF2241/RD', 1001, 2, '11:00:00', '14:40:00'),
+(1124, 'SELASA', 'GK101', 'IF2422/RA', 1005, 3, '07:00:00', '09:30:00'),
+(1125, 'SELASA', 'GK102', 'IF2422/RC', 1005, 3, '10:00:00', '12:30:00'),
+(1126, 'SELASA', 'GK101', 'IF2422/RB', 1006, 3, '07:00:00', '09:30:00'),
+(1127, 'SELASA', 'GK102', 'IF2422/RD', 1006, 3, '10:00:00', '12:30:00'),
+(1128, 'RABU', 'GK107', 'IF2231/RA', 1003, 3, '10:00:00', '12:40:00'),
+(1129, 'RABU', 'GK108', 'IF2231/RC', 1004, 3, '10:00:00', '12:40:00'),
+(1130, 'RABU', 'GK107', 'IF2231/RD', 1003, 3, '13:00:00', '15:40:00'),
+(1131, 'RABU', 'GK108', 'IF2231/RB', 1004, 3, '13:00:00', '15:40:00');
 
 -- --------------------------------------------------------
 
@@ -94,20 +113,62 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`kd_matkul`, `nama_matkul`, `thn_ajaran`, `sks`, `NIP`) VALUES
-('EL2201', 'Rangkaian Elektrik II', 2019, 3, 2001),
-('EL2202', 'Praktikum Rangkaian Elektrik II', 2019, 1, 2002),
-('EL2203', 'Medan Elektromagnetik', 2019, 3, 2003),
-('EL2204', 'Sinyal dan Sistem', 2019, 3, 2004),
-('EL2205', 'Pemecahan Masalah dengan C', 2019, 3, 2005),
-('EL3201', 'Sistem Instrumentasi', 2019, 3, 2001),
-('EL3202', 'Sistem Mikroprosesor', 2019, 3, 2002),
-('IF2211', 'Strategi Algoritma', 2019, 3, 1003),
-('IF2212', 'Teori Bahasa Formal dan Otomata	', 2019, 3, 1001),
-('IF2213', 'Matematika Diskrit 2', 2019, 2, 1002),
-('IF2221', 'Pemrograman Berorientasi Objek', 2019, 3, 1002),
-('IF2231', 'Sistem Operasi', 2019, 3, 1004),
-('IF2241', 'Dasar Rekayasa Perangkat Lunak', 2019, 2, 1001),
-('IF2422', 'Basis Data', 2019, 3, 1005);
+('EL2201/RA', 'Rangkaian Elektrik II', 2019, 3, 2003),
+('EL2201/RB', 'Rangkaian Elektrik II', 2019, 3, 2003),
+('EL2201/RC', 'Rangkaian Elektrik II', 2019, 3, 2004),
+('EL2201/RD', 'Rangkaian Elektrik II', 2019, 3, 2004),
+('EL2202/RA', 'Praktikum Rangkaian Elektrik II', 2019, 1, 2004),
+('EL2202/RB', 'Praktikum Rangkaian Elektrik II', 2019, 1, 2004),
+('EL2202/RC', 'Praktikum Rangkaian Elektrik II', 2019, 1, 2005),
+('EL2202/RD', 'Praktikum Rangkaian Elektrik II', 2019, 1, 2005),
+('EL2203/RA', 'Medan Elektromagnetik', 2019, 3, 2005),
+('EL2203/RB', 'Medan Elektromagnetik', 2019, 3, 2005),
+('EL2203/RC', 'Medan Elektromagnetik', 2019, 3, 2006),
+('EL2203/RD', 'Medan Elektromagnetik', 2019, 3, 2006),
+('EL2204/RA', 'Sinyal dan Sistem', 2019, 3, 2006),
+('EL2204/RB', 'Sinyal dan Sistem', 2019, 3, 2006),
+('EL2204/RC', 'Sinyal dan Sistem', 2019, 3, 2007),
+('EL2204/RD', 'Sinyal dan Sistem', 2019, 3, 2007),
+('EL2205/RA', 'Pemecahan Masalah dengan C', 2019, 3, 2007),
+('EL2205/RB', 'Pemecahan Masalah dengan C\r\n', 2019, 3, 2007),
+('EL2205/RC', 'Pemecahan Masalah dengan C\r\n', 2019, 3, 2001),
+('EL2205/RD', 'Pemecahan Masalah dengan C\r\n', 2019, 3, 2001),
+('EL3201/RA', 'Sistem Instrumentasi', 2019, 3, 2001),
+('EL3201/RB', 'Sistem Instrumentasi', 2019, 3, 2001),
+('EL3201/RC', 'Sistem Instrumentasi', 2019, 3, 2002),
+('EL3201/RD', 'Sistem Instrumentasi', 2019, 3, 2002),
+('EL3202/RA', 'Sistem Mikroprosesor', 2019, 3, 2002),
+('EL3202/RB', 'Sistem Mikroprosesor', 2019, 3, 2002),
+('EL3202/RC', 'Sistem Mikroprosesor', 2019, 3, 2003),
+('EL3202/RD', 'Sistem Mikroprosesor', 2019, 3, 2003),
+('IF2211/RA', 'Strategi Algoritma', 2019, 3, 1007),
+('IF2211/RB', 'Strategi Algoritma', 2019, 3, 1007),
+('IF2211/RC', 'Strategi Algoritma', 2019, 3, 1004),
+('IF2211/RD', 'Strategi Algoritma', 2019, 3, 1004),
+('IF2212/RA', 'Teori Bahasa Formal dan Otomata	', 2019, 3, 1007),
+('IF2212/RB', 'Teori Bahasa Formal dan Otomata', 2019, 3, 1006),
+('IF2212/RC', 'Teori Bahasa Formal dan Otomata', 2019, 3, 1006),
+('IF2212/RD', 'Teori Bahasa Formal dan Otomata', 2019, 3, 1007),
+('IF2213/RA', 'Matematika Diskrit 2', 2019, 3, 1003),
+('IF2213/RB', 'Matematika Diskrit 2', 2019, 3, 1003),
+('IF2213/RC', 'Matematika Diskrit 2', 2019, 3, 1005),
+('IF2213/RD', 'Matematika Diskrit 2', 2019, 3, 1005),
+('IF2221/RA', 'Pemrograman Berorientasi Objek', 2019, 3, 1002),
+('IF2221/RB', 'Pemrograman Berorientasi Objek', 2019, 3, 1002),
+('IF2221/RC', 'Pemrograman Berorientasi Objek', 2019, 3, 1001),
+('IF2221/RD', 'Pemrograman Berorientasi Objek', 2019, 3, 1001),
+('IF2231/RA', 'Sistem Operasi', 2019, 3, 1004),
+('IF2231/RB', 'Sistem Operasi ', 2019, 3, 1004),
+('IF2231/RC', 'Sistem Operasi ', 2019, 3, 1003),
+('IF2231/RD', 'Sistem Operasi ', 2019, 3, 1003),
+('IF2241/RA', 'Dasar Rekayasa Perangkat Lunak', 2019, 2, 1001),
+('IF2241/RB', 'Dasar Rekayasa Perangkat Lunak', 2019, 2, 1002),
+('IF2241/RC', 'Dasar Rekayasa Perangkat Lunak', 2019, 2, 1001),
+('IF2241/RD', 'Dasar Rekayasa Perangkat Lunak', 2019, 2, 1002),
+('IF2422/RA', 'Basis Data', 2019, 3, 1005),
+('IF2422/RB', 'Basis Data', 2019, 3, 1006),
+('IF2422/RC', 'Basis Data', 2019, 3, 1005),
+('IF2422/RD', 'Basis Data', 2019, 3, 1006);
 
 -- --------------------------------------------------------
 
@@ -276,7 +337,7 @@ ALTER TABLE `dosen`
 -- Indeks untuk tabel `jadwal`
 --
 ALTER TABLE `jadwal`
-  ADD PRIMARY KEY (`kd_kelas`),
+  ADD PRIMARY KEY (`kd_jadwal`),
   ADD KEY `kd_ruang` (`kd_ruang`,`kd_matkul`,`NIP`),
   ADD KEY `NIP` (`NIP`),
   ADD KEY `kd_matkul` (`kd_matkul`);
@@ -318,6 +379,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `jadwal`
+--
+ALTER TABLE `jadwal`
+  MODIFY `kd_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1132;
+
+--
 -- AUTO_INCREMENT untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
@@ -338,7 +405,8 @@ ALTER TABLE `dosen`
 --
 ALTER TABLE `jadwal`
   ADD CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`kd_matkul`) REFERENCES `matakuliah` (`kd_matkul`),
-  ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`kd_ruang`) REFERENCES `ruang` (`kd_ruang`);
+  ADD CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`kd_ruang`) REFERENCES `ruang` (`kd_ruang`),
+  ADD CONSTRAINT `jadwal_ibfk_3` FOREIGN KEY (`NIP`) REFERENCES `dosen` (`NIP`);
 
 --
 -- Ketidakleluasaan untuk tabel `matakuliah`
