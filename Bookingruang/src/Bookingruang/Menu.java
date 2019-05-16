@@ -107,7 +107,8 @@ public class Menu extends javax.swing.JFrame {
         logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(812, 529));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,9 +123,12 @@ public class Menu extends javax.swing.JFrame {
         ));
         jadwal.setViewportView(tabel);
 
+        getContentPane().add(jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 56, 665, 130));
+
         judul.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         judul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         judul.setText("Daftar Ruang Kosong Pada Gedung Kuliah Umum");
+        getContentPane().add(judul, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 11, 690, 34));
 
         tabel1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,12 +143,18 @@ public class Menu extends javax.swing.JFrame {
         ));
         jadwal1.setViewportView(tabel1);
 
+        getContentPane().add(jadwal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 244, 665, 168));
+
         judul1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         judul1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         judul1.setText("Daftar Peminjaman Ruang");
+        getContentPane().add(judul1, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 204, 690, 34));
+
+        jMenuBar2.setPreferredSize(new java.awt.Dimension(146, 26));
 
         menu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.gray, java.awt.Color.gray, java.awt.Color.gray, java.awt.Color.gray));
-        menu.setText("Menu Program");
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/list.png"))); // NOI18N
+        menu.setText("Menu");
         menu.setToolTipText("");
         menu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -172,6 +182,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar2.add(menu);
 
         logout.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, java.awt.Color.gray));
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/logout.png"))); // NOI18N
         logout.setText("Log out");
         logout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -186,33 +197,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar2.add(logout);
 
         setJMenuBar(jMenuBar2);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(judul1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jadwal1, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(judul, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(judul1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jadwal1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(82, 82, 82))
-        );
 
         pack();
         setLocationRelativeTo(null);

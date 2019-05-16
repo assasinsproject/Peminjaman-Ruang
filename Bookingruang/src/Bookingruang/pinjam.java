@@ -42,6 +42,7 @@ public class pinjam extends javax.swing.JFrame {
     public pinjam() {
         initComponents();
         combo();
+        zonahari();
     }
     
     public void kembali (){
@@ -91,13 +92,18 @@ public class pinjam extends javax.swing.JFrame {
     }
     
     public void hari(){
+        
         try{
             String query= "UPDATE pinjam SET hari = dayname(tanggal) WHERE tanggal ='"+tgl+"'";
                 conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
                 pst = conn.prepareStatement(query);
                 
                 pst.executeUpdate(query);
+                
+                JOptionPane.showMessageDialog(this,"Dapat hari!");
+     
         }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,"Gagal!");
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -131,10 +137,9 @@ public class pinjam extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ruang = new javax.swing.JComboBox<>();
+        ruang = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        tanggal = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         keterangan = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -151,22 +156,17 @@ public class pinjam extends javax.swing.JFrame {
         Jamspin1 = new javax.swing.JSpinner(ms);
         jLabel6 = new javax.swing.JLabel();
         nimpinjam = new javax.swing.JTextField();
+        tanggal = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Peminjaman Ruang Gedung Kuliah Umum");
 
         jLabel2.setText("Ruang");
 
         jLabel3.setText("Tanggal");
-
-        tanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                tanggalPropertyChange(evt);
-            }
-        });
 
         jLabel4.setText("Waktu Mulai");
 
@@ -179,7 +179,7 @@ public class pinjam extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Kembali");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/left-arrow (1).png"))); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -237,13 +237,14 @@ public class pinjam extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(ruang, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tanggal, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                                    .addComponent(keterangan)
-                                    .addComponent(Jamspin, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Jamspin1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nimpinjam))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(ruang, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(keterangan, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                                        .addComponent(Jamspin, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Jamspin1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(nimpinjam))
+                                    .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(10, 10, 10)))))
                 .addContainerGap(196, Short.MAX_VALUE))
         );
@@ -260,8 +261,8 @@ public class pinjam extends javax.swing.JFrame {
                     .addComponent(ruang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Jamspin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)

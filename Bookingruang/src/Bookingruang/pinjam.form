@@ -3,7 +3,6 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -50,13 +49,15 @@
                                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ruang" alignment="0" min="-2" pref="317" max="-2" attributes="0"/>
-                                  <Component id="tanggal" pref="318" max="32767" attributes="0"/>
-                                  <Component id="keterangan" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="Jamspin" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
-                                  <Component id="Jamspin1" min="-2" pref="123" max="-2" attributes="0"/>
-                                  <Component id="nimpinjam" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="ruang" alignment="0" min="-2" pref="317" max="-2" attributes="0"/>
+                                      <Component id="keterangan" alignment="0" pref="318" max="32767" attributes="0"/>
+                                      <Component id="Jamspin" alignment="0" min="-2" pref="123" max="-2" attributes="0"/>
+                                      <Component id="Jamspin1" min="-2" pref="123" max="-2" attributes="0"/>
+                                      <Component id="nimpinjam" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="tanggal" min="-2" pref="317" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
@@ -82,8 +83,8 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="tanggal" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="tanggal" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -115,6 +116,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Peminjaman Ruang Gedung Kuliah Umum"/>
       </Properties>
@@ -139,11 +143,6 @@
         <Property name="text" type="java.lang.String" value="Tanggal"/>
       </Properties>
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="tanggal">
-      <Events>
-        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="tanggalPropertyChange"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Waktu Mulai"/>
@@ -166,7 +165,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kembali"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/pict/images/left-arrow (1).png"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
@@ -206,6 +207,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="nimpinjam">
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="tanggal">
     </Component>
   </SubComponents>
 </Form>

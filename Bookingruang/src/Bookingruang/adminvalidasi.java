@@ -89,7 +89,7 @@ public class adminvalidasi extends javax.swing.JFrame {
     }
     public void klik (adminvalidasi av){
         int pilih = av.tabelpakai.getSelectedRow();
-        av.validasi.setSelectedItem(av.tabelpakai.getValueAt(pilih, 9).toString());
+        av.validasi.setSelectedItem(av.tabelpakai.getValueAt(pilih, 8).toString());
     }
 
     /**
@@ -107,14 +107,13 @@ public class adminvalidasi extends javax.swing.JFrame {
         tabelkosong = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        validasi = new javax.swing.JComboBox<>();
+        validasi = new javax.swing.JComboBox<String>();
         update = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
-        logout = new javax.swing.JMenu();
         perkuliahan = new javax.swing.JMenu();
+        logout = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(812, 529));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -159,35 +158,31 @@ public class adminvalidasi extends javax.swing.JFrame {
         jLabel2.setText("Ruang Terpakai");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        validasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
+        validasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
         validasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 validasiActionPerformed(evt);
             }
         });
-        getContentPane().add(validasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 130, -1));
+        getContentPane().add(validasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 120, 30));
 
-        update.setText("Update");
+        update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/refresh-button (1).png"))); // NOI18N
+        update.setPreferredSize(new java.awt.Dimension(32, 32));
         update.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 updateMouseClicked(evt);
             }
         });
-        getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, -1, -1));
-
-        logout.setText("Log out");
-        logout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logoutMouseClicked(evt);
-            }
-        });
-        logout.addActionListener(new java.awt.event.ActionListener() {
+        update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutActionPerformed(evt);
+                updateActionPerformed(evt);
             }
         });
-        jMenuBar2.add(logout);
+        getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, 30));
 
+        jMenuBar2.setPreferredSize(new java.awt.Dimension(184, 26));
+
+        perkuliahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/calendar (1).png"))); // NOI18N
         perkuliahan.setText("Jadwal Perkuliahan GKU");
         perkuliahan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -200,6 +195,20 @@ public class adminvalidasi extends javax.swing.JFrame {
             }
         });
         jMenuBar2.add(perkuliahan);
+
+        logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/logout.png"))); // NOI18N
+        logout.setText("Log out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        jMenuBar2.add(logout);
 
         setJMenuBar(jMenuBar2);
 
@@ -269,6 +278,10 @@ public class adminvalidasi extends javax.swing.JFrame {
     private void perkuliahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perkuliahanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_perkuliahanActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateActionPerformed
 
     /**
      * @param args the command line arguments
