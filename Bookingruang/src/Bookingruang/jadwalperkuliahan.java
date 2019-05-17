@@ -73,6 +73,7 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
         kembali = new javax.swing.JButton();
         isicari = new javax.swing.JTextField();
         cari = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,7 +111,7 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
             }
         });
         getContentPane().add(kembali, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 11, -1, -1));
-        getContentPane().add(isicari, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 397, 206, 26));
+        getContentPane().add(isicari, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 206, 26));
 
         cari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/search.png"))); // NOI18N
         cari.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,7 +124,15 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
                 cariActionPerformed(evt);
             }
         });
-        getContentPane().add(cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 397, 40, 26));
+        getContentPane().add(cari, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, 40, 30));
+
+        jButton1.setText("Refresh");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, -1, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
         jLabel2.setPreferredSize(new java.awt.Dimension(812, 529));
@@ -183,6 +192,10 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_kembaliActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        daftarjadwal();
+    }//GEN-LAST:event_jButton1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -222,6 +235,7 @@ public class jadwalperkuliahan extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cari;
     private javax.swing.JTextField isicari;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

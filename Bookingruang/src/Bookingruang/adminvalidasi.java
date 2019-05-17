@@ -107,8 +107,11 @@ public class adminvalidasi extends javax.swing.JFrame {
         tabelkosong = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        validasi = new javax.swing.JComboBox<String>();
+        validasi = new javax.swing.JComboBox<>();
         update = new javax.swing.JButton();
+        nim = new javax.swing.JTextField();
+        hapus = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         perkuliahan = new javax.swing.JMenu();
@@ -116,7 +119,6 @@ public class adminvalidasi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(812, 529));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tabelpakai.setModel(new javax.swing.table.DefaultTableModel(
@@ -152,15 +154,15 @@ public class adminvalidasi extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabelkosong);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 350, 90));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 350, 90));
 
         jLabel1.setText("Ruang Kosong");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         jLabel2.setText("Ruang Terpakai");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        validasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
+        validasi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belum Divalidasi", "Sudah Divalidasi" }));
         validasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 validasiActionPerformed(evt);
@@ -181,6 +183,18 @@ public class adminvalidasi extends javax.swing.JFrame {
             }
         });
         getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, 30));
+        getContentPane().add(nim, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 160, 20));
+
+        hapus.setText("Hapus");
+        hapus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hapusMouseClicked(evt);
+            }
+        });
+        getContentPane().add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
+
+        jLabel4.setText("Penghapusan Peminjaman (input NIM peminjam)");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 240, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(812, 529));
@@ -289,6 +303,23 @@ public class adminvalidasi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_updateActionPerformed
 
+    private void hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseClicked
+        try{
+            String query = "DELETE FROM `pinjam` where nim='"+nim.getText()+"'";
+                conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+                pst = conn.prepareStatement(query);
+               
+                pst.executeUpdate(query);
+                JOptionPane.showMessageDialog(this,"Penghapusan Peminjaman Berhasil");
+                ruangpakai();
+     
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,"Penghapusan GAGAL!, Silahkan periksa nim peminjam!");
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }//GEN-LAST:event_hapusMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -318,6 +349,7 @@ public class adminvalidasi extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new adminvalidasi().setVisible(true);
             }
@@ -325,13 +357,16 @@ public class adminvalidasi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton hapus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JMenu logout;
+    private javax.swing.JTextField nim;
     private javax.swing.JMenu perkuliahan;
     private javax.swing.JTable tabelkosong;
     private javax.swing.JTable tabelpakai;

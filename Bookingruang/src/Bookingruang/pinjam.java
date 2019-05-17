@@ -99,8 +99,6 @@ public class pinjam extends javax.swing.JFrame {
                 pst = conn.prepareStatement(query);
                 
                 pst.executeUpdate(query);
-                
-                JOptionPane.showMessageDialog(this,"Dapat hari!");
      
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,"Gagal!");
@@ -109,23 +107,6 @@ public class pinjam extends javax.swing.JFrame {
         }
     }
     
-    public void zonahari(){
-        try{
-            String query= "SET @@lc_time_names='id_ID'";
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
-            pst = conn.prepareStatement(query);
-                
-            pst.executeUpdate(query);
-                
-            JOptionPane.showMessageDialog(this,"indo");
-            
-     
-        }catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this,"Gagal!");
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
