@@ -228,6 +228,12 @@ public class pinjam extends javax.swing.JFrame {
         jLabel6.setText("NIM");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 369, 68, 24));
         getContentPane().add(nimpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 373, 318, -1));
+
+        tanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tanggalPropertyChange(evt);
+            }
+        });
         getContentPane().add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 131, 317, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
