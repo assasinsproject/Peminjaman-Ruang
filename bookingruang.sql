@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Bulan Mei 2019 pada 16.20
+-- Waktu pembuatan: 23 Bulan Mei 2019 pada 19.47
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -221,7 +221,8 @@ CREATE TABLE `pinjam` (
 
 INSERT INTO `pinjam` (`kd_pinjam`, `kd_ruang`, `hari`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `keterangan`, `NIM`, `status`) VALUES
 (39, 'GK102', 'Monday', '2019-05-20', '09:00:00', '10:40:00', 'tess1', '14117157', 'Sudah Divalidasi'),
-(42, 'GK103', 'Friday', '2019-05-24', '09:00:00', '10:40:00', 'pengganti', '14117167', 'Belum Divalidasi');
+(42, 'GK103', 'Friday', '2019-05-24', '09:00:00', '10:40:00', 'pengganti', '14117167', 'Belum Divalidasi'),
+(44, 'GK310', 'Friday', '2019-05-24', '10:00:00', '11:40:00', 'pengganti matdis', '14117089', 'Belum Divalidasi');
 
 -- --------------------------------------------------------
 
@@ -385,7 +386,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `kd_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `kd_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

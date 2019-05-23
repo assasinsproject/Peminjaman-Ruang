@@ -42,7 +42,6 @@ public class pinjam extends javax.swing.JFrame {
     public pinjam() {
         initComponents();
         combo();
-        
     }
     
     public void kembali (){
@@ -66,6 +65,13 @@ public class pinjam extends javax.swing.JFrame {
             }
         }catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void hapuscombo(){
+        int itemCount = ruang.getItemCount();
+
+        for(int i=0;i<itemCount;i++){
+        ruang.removeItemAt(0);
         }
     }
     
@@ -138,6 +144,9 @@ public class pinjam extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         nimpinjam = new javax.swing.JTextField();
         tanggal = new com.toedter.calendar.JDateChooser();
+        rbesar = new javax.swing.JButton();
+        rkecil = new javax.swing.JButton();
+        aula = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -155,14 +164,14 @@ public class pinjam extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 87, 68, 26));
 
         jLabel3.setText("Tanggal");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 47, 26));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 47, 26));
 
         jLabel4.setText("Waktu Mulai");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 198, -1, -1));
-        getContentPane().add(keterangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 322, 318, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, -1, -1));
+        getContentPane().add(keterangan, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 340, 318, -1));
 
         jLabel7.setText("Keterangan");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 325, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
 
         pinjam.setText("Pinjam");
         pinjam.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,15 +187,10 @@ public class pinjam extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jLabel5.setText("Waktu Selesai");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 267, 68, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 68, -1));
 
         JSpinner.DateEditor de = new JSpinner.DateEditor(Jamspin, "HH:mm");
         Jamspin.setEditor(de);
@@ -195,7 +199,7 @@ public class pinjam extends javax.swing.JFrame {
                 JamspinStateChanged(evt);
             }
         });
-        getContentPane().add(Jamspin, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 188, 123, 35));
+        getContentPane().add(Jamspin, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 123, 35));
 
         JSpinner.DateEditor ed = new JSpinner.DateEditor(Jamspin1, "HH:mm");
         Jamspin1.setEditor(ed);
@@ -204,18 +208,42 @@ public class pinjam extends javax.swing.JFrame {
                 Jamspin1StateChanged(evt);
             }
         });
-        getContentPane().add(Jamspin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 256, 123, 37));
+        getContentPane().add(Jamspin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 270, 123, 37));
 
         jLabel6.setText("NIM");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 369, 68, 24));
-        getContentPane().add(nimpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 373, 318, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 68, 24));
+        getContentPane().add(nimpinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, 318, -1));
 
         tanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tanggalPropertyChange(evt);
             }
         });
-        getContentPane().add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 320, -1));
+        getContentPane().add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 170, 320, -1));
+
+        rbesar.setText("R.besar");
+        rbesar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbesarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(rbesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 120, -1, -1));
+
+        rkecil.setText("R.kecil");
+        rkecil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rkecilMouseClicked(evt);
+            }
+        });
+        getContentPane().add(rkecil, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 120, 70, -1));
+
+        aula.setText("Aula");
+        aula.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aulaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(aula, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 120, 80, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
         jLabel8.setPreferredSize(new java.awt.Dimension(812, 529));
@@ -245,10 +273,6 @@ public class pinjam extends javax.swing.JFrame {
                 this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void JamspinStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_JamspinStateChanged
         // TODO add your handling code here:
         SimpleDateFormat format_jam = new SimpleDateFormat("HH:mm");
@@ -260,6 +284,66 @@ public class pinjam extends javax.swing.JFrame {
         SimpleDateFormat format_jam = new SimpleDateFormat("HH:mm");
         waktu1 = format_jam.format(Jamspin1.getValue());
     }//GEN-LAST:event_Jamspin1StateChanged
+
+    private void rkecilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rkecilMouseClicked
+        try{
+            hapuscombo();
+            String query = "SELECT kd_ruang FROM ruang where kapasitas=(SELECT min(kapasitas) from ruang)";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+            pst = conn.prepareStatement(query);
+            
+            rst = pst.executeQuery();
+            
+            int i=1;
+            while (rst.next()){
+                String kode = rst.getString("kd_ruang");
+                ruang.addItem(kode);
+                i++;
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_rkecilMouseClicked
+
+    private void rbesarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbesarMouseClicked
+        try{
+            hapuscombo();
+            String query = "SELECT kd_ruang FROM ruang where jns_ruang='R.Besar'";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+            pst = conn.prepareStatement(query);
+            
+            rst = pst.executeQuery();
+            
+            int i=1;
+            while (rst.next()){
+                String kode = rst.getString("kd_ruang");
+                ruang.addItem(kode);
+                i++;
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_rbesarMouseClicked
+
+    private void aulaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aulaMouseClicked
+        try{
+            hapuscombo();
+            String query = "SELECT kd_ruang FROM ruang where kapasitas=(SELECT max(kapasitas) from ruang)";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
+            pst = conn.prepareStatement(query);
+            
+            rst = pst.executeQuery();
+            
+            int i=1;
+            while (rst.next()){
+                String kode = rst.getString("kd_ruang");
+                ruang.addItem(kode);
+                i++;
+            }
+        }catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_aulaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -300,6 +384,7 @@ public class pinjam extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JSpinner Jamspin;
     public javax.swing.JSpinner Jamspin1;
+    private javax.swing.JButton aula;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -312,6 +397,8 @@ public class pinjam extends javax.swing.JFrame {
     private javax.swing.JTextField keterangan;
     private javax.swing.JTextField nimpinjam;
     private javax.swing.JButton pinjam;
+    private javax.swing.JButton rbesar;
+    private javax.swing.JButton rkecil;
     private javax.swing.JComboBox<String> ruang;
     private com.toedter.calendar.JDateChooser tanggal;
     // End of variables declaration//GEN-END:variables
