@@ -118,7 +118,7 @@ public class pinjam extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        ruang = new javax.swing.JComboBox<String>();
+        ruang = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -149,13 +149,13 @@ public class pinjam extends javax.swing.JFrame {
         jLabel1.setText("Peminjaman Ruang Gedung Kuliah Umum");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 11, 256, 36));
 
-        getContentPane().add(ruang, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 90, 317, -1));
+        getContentPane().add(ruang, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 320, -1));
 
         jLabel2.setText("Ruang");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 87, 68, 26));
 
         jLabel3.setText("Tanggal");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 131, 47, 26));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 47, 26));
 
         jLabel4.setText("Waktu Mulai");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 198, -1, -1));
@@ -215,7 +215,7 @@ public class pinjam extends javax.swing.JFrame {
                 tanggalPropertyChange(evt);
             }
         });
-        getContentPane().add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 131, 317, -1));
+        getContentPane().add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 320, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
         jLabel8.setPreferredSize(new java.awt.Dimension(812, 529));

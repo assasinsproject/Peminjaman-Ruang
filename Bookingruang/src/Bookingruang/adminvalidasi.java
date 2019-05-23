@@ -112,6 +112,9 @@ public class adminvalidasi extends javax.swing.JFrame {
         nim = new javax.swing.JTextField();
         hapus = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        waktu = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         perkuliahan = new javax.swing.JMenu();
@@ -154,10 +157,10 @@ public class adminvalidasi extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabelkosong);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 350, 90));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 350, 90));
 
         jLabel1.setText("Ruang Kosong");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jLabel2.setText("Ruang Terpakai");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
@@ -183,7 +186,7 @@ public class adminvalidasi extends javax.swing.JFrame {
             }
         });
         getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, 30));
-        getContentPane().add(nim, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 160, 20));
+        getContentPane().add(nim, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, 120, 20));
 
         hapus.setText("Hapus");
         hapus.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,10 +194,17 @@ public class adminvalidasi extends javax.swing.JFrame {
                 hapusMouseClicked(evt);
             }
         });
-        getContentPane().add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, -1, -1));
+        getContentPane().add(hapus, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, -1, -1));
 
-        jLabel4.setText("Penghapusan Peminjaman (input NIM peminjam)");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 240, 20));
+        jLabel4.setText("Penghapusan Peminjaman ");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 130, 20));
+
+        jLabel5.setText("Waktu  : ");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 230, 50, 20));
+
+        jLabel6.setText("NIM      : ");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 50, 20));
+        getContentPane().add(waktu, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 120, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
         jLabel3.setPreferredSize(new java.awt.Dimension(812, 529));
@@ -305,7 +315,7 @@ public class adminvalidasi extends javax.swing.JFrame {
 
     private void hapusMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hapusMouseClicked
         try{
-            String query = "DELETE FROM `pinjam` where nim='"+nim.getText()+"'";
+            String query = "DELETE FROM pinjam where nim='"+nim.getText()+"'and waktu_mulai='"+waktu.getText()+"'";
                 conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
                 pst = conn.prepareStatement(query);
                
@@ -362,6 +372,8 @@ public class adminvalidasi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -372,5 +384,6 @@ public class adminvalidasi extends javax.swing.JFrame {
     private javax.swing.JTable tabelpakai;
     private javax.swing.JButton update;
     public javax.swing.JComboBox<String> validasi;
+    private javax.swing.JTextField waktu;
     // End of variables declaration//GEN-END:variables
 }

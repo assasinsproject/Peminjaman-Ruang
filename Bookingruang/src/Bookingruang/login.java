@@ -39,14 +39,14 @@ public class login extends javax.swing.JFrame {
     }
     public void exit(){
         int selectedOption = JOptionPane.showConfirmDialog(null,
-        "Apakah anda akan menutup system?", "Tutup Aplikasi", JOptionPane.YES_NO_OPTION);
+        "Apakah anda akan menutup Sistem?", "Tutup Aplikasi", JOptionPane.YES_NO_OPTION);
         if (selectedOption == JOptionPane.YES_OPTION) {
         System.exit(0);
  }
     }
     public void login1(){
         try {
-            String query = "SELECT * FROM `user` WHERE username=? and password=?";
+            String query = "SELECT * FROM pengguna WHERE username=? and password=?";
             conn = DriverManager.getConnection("jdbc:mysql://localhost/bookingruang","root","");
             pst = conn.prepareStatement(query);
             pst.setString(1, uname.getText());

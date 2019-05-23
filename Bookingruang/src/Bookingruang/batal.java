@@ -113,7 +113,6 @@ public class batal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(812, 529));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/left-arrow (1).png"))); // NOI18N
@@ -181,7 +180,13 @@ public class batal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(pinjam, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 373, -1, -1));
-        getContentPane().add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 137, 317, -1));
+
+        tanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                tanggalPropertyChange(evt);
+            }
+        });
+        getContentPane().add(tanggal, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 320, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pict/images/template.png"))); // NOI18N
         jLabel7.setText("jLabel7");

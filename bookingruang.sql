@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Bulan Mei 2019 pada 07.39
+-- Waktu pembuatan: 23 Bulan Mei 2019 pada 16.20
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.3
 
@@ -178,6 +178,28 @@ INSERT INTO `matakuliah` (`kd_matkul`, `nama_matkul`, `thn_ajaran`, `sks`, `NIP`
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `pengguna`
+--
+
+CREATE TABLE `pengguna` (
+  `kd_user` int(11) NOT NULL,
+  `username` varchar(21) NOT NULL,
+  `password` varchar(21) NOT NULL,
+  `level` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `pengguna`
+--
+
+INSERT INTO `pengguna` (`kd_user`, `username`, `password`, `level`) VALUES
+(1, 'admin', 'admin', 2),
+(2, 'leo.14117167', '1999-08-24', 1),
+(3, 'fathan.14117157', '1999-08-21', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `pinjam`
 --
 
@@ -198,8 +220,8 @@ CREATE TABLE `pinjam` (
 --
 
 INSERT INTO `pinjam` (`kd_pinjam`, `kd_ruang`, `hari`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `keterangan`, `NIM`, `status`) VALUES
-(38, 'GK101', 'Saturday', '2019-05-18', '10:00:00', '11:40:00', 'pengganti', '14117167', 'Sudah Divalidasi'),
-(39, 'GK102', 'Monday', '2019-05-20', '09:00:00', '10:40:00', 'tess1', '14117157', 'Sudah Divalidasi');
+(39, 'GK102', 'Monday', '2019-05-20', '09:00:00', '10:40:00', 'tess1', '14117157', 'Sudah Divalidasi'),
+(42, 'GK103', 'Friday', '2019-05-24', '09:00:00', '10:40:00', 'pengganti', '14117167', 'Belum Divalidasi');
 
 -- --------------------------------------------------------
 
@@ -291,32 +313,6 @@ INSERT INTO `ruang` (`kd_ruang`, `jns_ruang`, `kapasitas`) VALUES
 ('GK410', 'R.Besar', 80),
 ('GKAULA', 'Aula', 300);
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `user`
---
-
-CREATE TABLE `user` (
-  `NIM` int(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `nama_mhs` varchar(20) NOT NULL,
-  `kd_prodi` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `level` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`NIM`, `username`, `nama_mhs`, `kd_prodi`, `password`, `level`) VALUES
-(0, 'admin', '', '', 'admin', 2),
-(14117068, 'chandra.14117068', 'Chandra karang', 'IF', '1999-06-29', 1),
-(14117099, 'Yoga.14117099', 'Yoga Naufal', 'EL', '1999-04-14', 1),
-(14117157, 'fathan.14117157', 'Fathan Rizky', 'EL', '1999-08-21', 1),
-(14117167, 'leo.14117167', 'Leo Viranda', 'IF', '1999-08-24', 1);
-
 --
 -- Indexes for dumped tables
 --
@@ -345,6 +341,12 @@ ALTER TABLE `matakuliah`
   ADD KEY `NIP` (`NIP`);
 
 --
+-- Indeks untuk tabel `pengguna`
+--
+ALTER TABLE `pengguna`
+  ADD PRIMARY KEY (`kd_user`);
+
+--
 -- Indeks untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
@@ -364,12 +366,6 @@ ALTER TABLE `ruang`
   ADD PRIMARY KEY (`kd_ruang`);
 
 --
--- Indeks untuk tabel `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`NIM`);
-
---
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -380,10 +376,16 @@ ALTER TABLE `jadwal`
   MODIFY `kd_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1137;
 
 --
+-- AUTO_INCREMENT untuk tabel `pengguna`
+--
+ALTER TABLE `pengguna`
+  MODIFY `kd_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT untuk tabel `pinjam`
 --
 ALTER TABLE `pinjam`
-  MODIFY `kd_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `kd_pinjam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
